@@ -3,7 +3,10 @@ package com.example.temperature_converter
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -60,12 +63,8 @@ fun TemperatureConverterApp() {
                 .padding(paddingValues)
                 .padding(16.dp),
         ) {
-            Spacer(
-                modifier = Modifier.height(16.dp),
-            )
-            TextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
+            OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = input,
                 onValueChange = {
                     input = it
@@ -75,9 +74,10 @@ fun TemperatureConverterApp() {
                     fontSize = 17.sp,
                 ),
                 placeholder = {
-                    Text(
-                        text = "Temperatura",
-                    )
+                    Text(text = "Temperatura")
+                },
+                label = {
+                    Text(text = "Temperatura")
                 }
             )
             Spacer(
@@ -91,19 +91,19 @@ fun TemperatureConverterApp() {
                 modifier = Modifier.height(16.dp),
             )
             Text(
-                "Celsius: $celsius °C",
+                "Celsius: ${"%.2f".format(celsius)} °C",
                 style = TextStyle(
                     fontSize = 18.sp,
                 ),
             )
             Text(
-                "Fahrenheit: $fahrenheit °F",
+                "Fahrenheit: ${"%.2f".format(fahrenheit)} °F",
                 style = TextStyle(
                     fontSize = 18.sp,
                 ),
             )
             Text(
-                "Kelvin: $kelvin K",
+                "Kelvin: ${"%.2f".format(kelvin)} K",
                 style = TextStyle(
                     fontSize = 18.sp,
                 ),
@@ -125,16 +125,36 @@ fun DropdownMenu(
     )
 
     Box {
-        Button(onClick = { expanded = true }) {
-            Text(selectedUnit)
-        }
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable{ expanded = true },
+            value = selectedUnit,
+            onValueChange = {},
+            readOnly = true,
+            textStyle = TextStyle(fontSize = 18.sp),
+            trailingIcon = {
+                IconButton(
+                    onClick = { expanded = true },
+                ) {
+                    Icon(
+                        Icons.Default.ArrowDropDown,
+                        contentDescription = "Abrir menu",
+                    )
+                }
+            }
+        )
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
         ) {
             units.forEach { unit ->
                 DropdownMenuItem(
-                    text = { Text(unit) },
+                    text = {
+                        Text(
+                            unit,
+                        )
+                   },
                     onClick = {
                         onUnitSelected(unit)
                         expanded = false

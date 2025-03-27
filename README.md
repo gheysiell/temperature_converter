@@ -8,8 +8,8 @@ This is a documentation of the **temperature_converter** project, which includes
 
 ## Project Statistics
 
-- **Lines of code**: 251
+- **Lines of code**: 270
 - **Files**: 4
 - **Folders**: 2
 - **Screens**: 1
-- **Average lines per file**: 63
+- **Average lines per file**: 68
