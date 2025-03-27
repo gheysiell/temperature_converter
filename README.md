@@ -1,6 +1,6 @@
 # temperature_converter
 
-![Home Screen](https://raw.githubusercontent.com/gheysiell/images/main/notes_screen.png)
+![Home Screen](https://raw.githubusercontent.com/gheysiell/images/main/temperature_converter_screen.png)
 
 ## Description
 
